@@ -905,3 +905,55 @@
         height: 28px;
     }
 }
+
+/* Media query para dispositivos móveis pequenos */
+@media screen and (max-width: 480px) {
+    .Pagina_1_central_butons {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 1rem;
+        padding-bottom: 6rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .Pagina_1_buton1 {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding: 1.5rem 1rem;
+        font-size: 0.95rem;
+        box-sizing: border-box;
+    }
+    
+    .Pagina_1_buton1 .icon-calendar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .Pagina_1_buton1 span {
+        font-size: 1rem;
+    }
+}
+
+/* Media query para dispositivos móveis médios */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .Pagina_1_central_butons {
+        gap: 1rem;
+        padding: 2rem 1rem;
+        padding-bottom: 6rem;
+    }
+    
+    .Pagina_1_buton1 {
+        flex: 1;
+        min-width: auto;
+        max-width: 45%;
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .Pagina_1_buton1 .icon-calendar {
+        width: 42px;
+        height: 42px;
+    }
+}
