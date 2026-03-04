@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Atendimentos - Damasceno's Hair</title>
+    <link rel="stylesheet" href="css/atendimentos.css">
+    <link rel="icon" type="image/png" href="img/Logo (2).png">
+</head>
+<body>
+    <script>
+        // Verificar login ao carregar a página
+        window.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                sessionStorage.setItem('redirecionarApos', 'atendimentos.html');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+    
+    <header>
+        <nav class="header-nav">
+            <img src="img/Logo (2).png" alt="Logo" class="logo">
+            <h1>Meus Atendimentos</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section class="atendimentos-section">
+            <div class="titulo-section">
+                <h1>Histórico de Agendamentos</h1>
+                <p>Acompanhe seus horários marcados</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filtros">
+                <button class="btn-filtro active" onclick="filtrarAtendimentos('todos')">Todos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('proximos')">Próximos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('concluidos')">Concluídos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('cancelados')">Cancelados</button>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading-bar" id="loading-atendimentos">
+                <div class="loading-bar-progress"></div>
+            </div>
+
+            <!-- Lista de Atendimentos -->
+            <div class="atendimentos-lista" id="atendimentos-lista">
+                <!-- Os atendimentos serão carregados dinamicamente via JavaScript -->
+            </div>
+
+            <!-- Botão Novo Agendamento -->
+            <div class="novo-agendamento">
+                <a href="agendamento.html" class="btn-novo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Novo Agendamento
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Barra de Navegação Inferior -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9.02 2.84016L3.63 7.04016C2.73 7.74016 2 9.23016 2 10.3602V17.7702C2 20.0902 3.89 21.9902 6.21 21.9902H17.79C20.11 21.9902 22 20.0902 22 17.7802V10.5002C22 9.29016 21.19 7.74016 20.2 7.05016L14.02 2.72016C12.62 1.74016 10.37 1.79016 9.02 2.84016Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Início</span>
+        </a>
+        <a href="agendamento.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Agendar</span>
+        </a>
+        <a href="atendimentos.html" class="nav-item active">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Atendimentos</span>
+        </a>
+        <a href="perfil.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal-overlay" id="modalConfirmacao" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-icon">⚠️</div>
+            <h2 id="modalTitulo">Confirmar Ação</h2>
+            <p id="modalMensagem"></p>
+            <div class="modal-buttons">
+                <button onclick="fecharModal()" class="btn-modal-secondary">Cancelar</button>
+                <button id="btnConfirmarAcao" class="btn-modal">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/atendimentos.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Damasceno's Hair</title>
+    <link rel="stylesheet" href="css/agendamento.css">
+    <link rel="icon" type="image/png" href="img/Logo (2).png">
+</head>
+<body>
+    <script>
+        // Verificar login ao carregar a página
+        window.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                sessionStorage.setItem('redirecionarApos', 'agendamento.html');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+    
+    <header>
+        <nav class="header-nav">
+            <img src="img/Logo (2).png" alt="Logo" class="logo">
+            <h1>Agendar Horário</h1>
+        </nav>
+    </header>
+
+    <main>
+    <div class="container">
+        <div class="card-wrapper">
+            <div class="header">
+                <div class="logo-container">
+                    <img src="img/Logo (2).png" alt="Logo Damasceno's Hair">
+                </div>
+            </div>
+
+            <form class="agendamento-form" id="agendamentoForm">
+                <div id="errorMessage" class="error-message">
+                    <span>⚠️</span>
+                    <span id="errorText"></span>
+                </div>
+
+                <!-- Campo 1: Barbeiro -->
+                <div class="campo-selecao">
+                    <button type="button" class="campo-btn" id="btnBarbeiro" onclick="abrirPopupBarbeiro()">
+                        <div class="campo-label">
+                            <span class="campo-icone">👨‍🦲</span>
+                            <div class="campo-texto">
+                                <span class="campo-titulo">Barbeiro</span>
+                                <span class="campo-valor" id="barbeiroSelecionado">Selecione o barbeiro</span>
+                            </div>
+                        </div>
+                        <span class="campo-seta">›</span>
+                    </button>
+                    <input type="hidden" name="profissional" id="profissional-hidden" required>
+                </div>
+
+                <!-- Campo 2: Serviço -->
+                <div class="campo-selecao">
+                    <button type="button" class="campo-btn" id="btnServico" onclick="abrirPopupServico()">
+                        <div class="campo-label">
+                            <span class="campo-icone">💈</span>
+                            <div class="campo-texto">
+                                <span class="campo-titulo">Serviço</span>
+                                <span class="campo-valor" id="servicoSelecionado">Escolha o serviço</span>
+                            </div>
+                        </div>
+                        <span class="campo-seta">›</span>
+                    </button>
+                    <input type="hidden" name="servico" id="servico-hidden" required>
+                    <input type="hidden" name="preco" id="preco-hidden" required>
+                </div>
+
+                <!-- Campo 3: Data -->
+                <div class="campo-selecao">
+                    <button type="button" class="campo-btn" id="btnData" onclick="abrirPopupData()">
+                        <div class="campo-label">
+                            <span class="campo-icone">📅</span>
+                            <div class="campo-texto">
+                                <span class="campo-titulo">Data</span>
+                                <span class="campo-valor" id="dataSelecionada">Selecione a data</span>
+                            </div>
+                        </div>
+                        <span class="campo-seta">›</span>
+                    </button>
+                    <input type="hidden" name="data_agendamento" id="data-hidden" required>
+                </div>
+
+                <!-- Campo 4: Horário -->
+                <div class="campo-selecao">
+                    <button type="button" class="campo-btn" id="btnHorario" onclick="abrirPopupHorario()">
+                        <div class="campo-label">
+                            <span class="campo-icone">🕐</span>
+                            <div class="campo-texto">
+                                <span class="campo-titulo">Horário</span>
+                                <span class="campo-valor" id="horarioSelecionado">Escolha o horário</span>
+                            </div>
+                        </div>
+                        <span class="campo-seta">›</span>
+                    </button>
+                    <input type="hidden" name="horario" id="horario-hidden" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="btnConfirmar">
+                    <span class="btn-text">✅ Confirmar Agendamento</span>
+                    <span class="btn-loader" style="display: none;">
+                        <svg class="spinner" width="20" height="20" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                        </svg>
+                        Agendando...
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup: Barbeiro -->
+    <div class="popup-overlay" id="popupBarbeiro">
+        <div class="popup-content">
+            <div class="popup-handle" onclick="fecharPopup('popupBarbeiro')">
+                <div class="popup-handle-bar"></div>
+            </div>
+            <div class="popup-header">
+                <h3>👨‍🦲 Escolha seu Barbeiro</h3>
+                <button type="button" class="close-popup" onclick="fecharPopup('popupBarbeiro')">✕</button>
+            </div>
+            <div class="popup-body">
+                <div class="barbeiros-grid">
+                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Sandrão')">
+                        <div class="barbeiro-photo">
+                            <img src="img/Foto pg 1 sandrão.png" alt="Sandrão">
+                        </div>
+                        <div class="barbeiro-name">Sandrão</div>
+                        <div class="barbeiro-desc">Especialista em cortes clássicos e modernos</div>
+                    </div>
+                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Tito')">
+                        <div class="barbeiro-photo">
+                            <img src="img/2 tito.png" alt="Tito">
+                        </div>
+                        <div class="barbeiro-name">Tito</div>
+                        <div class="barbeiro-desc">Expert em barbas e degradês</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup: Serviço -->
+    <div class="popup-overlay" id="popupServico">
+        <div class="popup-content">
+            <div class="popup-handle" onclick="fecharPopup('popupServico')">
+                <div class="popup-handle-bar"></div>
+            </div>
+            <div class="popup-header">
+                <h3>💈 Escolha o Serviço</h3>
+                <button type="button" class="close-popup" onclick="fecharPopup('popupServico')">✕</button>
+            </div>
+            <div class="popup-body">
+                <div class="servicos-list">
+                    <div class="servico-item" onclick="selecionarServico('Corte de Cabelo', 'R$ 40')">
+                        <div class="servico-info">
+                            <span class="servico-icone">✂️</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Corte de Cabelo</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 40</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Barba', 'R$ 30')">
+                        <div class="servico-info">
+                            <span class="servico-icone">🪒</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Barba</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 30</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Corte + Barba', 'R$ 60')">
+                        <div class="servico-info">
+                            <span class="servico-icone">💈</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Corte + Barba</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 60</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Hidratação', 'R$ 50')">
+                        <div class="servico-info">
+                            <span class="servico-icone">💧</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Hidratação</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 50</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Pigmentação', 'R$ 80')">
+                        <div class="servico-info">
+                            <span class="servico-icone">🎨</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Pigmentação</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 80</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Sobrancelha', 'R$ 25')">
+                        <div class="servico-info">
+                            <span class="servico-icone">👁️</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Sobrancelha</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 25</span>
+                    </div>
+                    <div class="servico-item" onclick="selecionarServico('Corte + Barba + Sobrancelha', 'R$ 80')">
+                        <div class="servico-info">
+                            <span class="servico-icone">💈</span>
+                            <div class="servico-detalhes">
+                                <span class="servico-nome">Corte + Barba + Sobrancelha</span>
+                            </div>
+                        </div>
+                        <span class="servico-preco">R$ 80</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup: Data -->
+    <div class="popup-overlay" id="popupData">
+        <div class="popup-content">
+            <div class="popup-handle" onclick="fecharPopup('popupData')">
+                <div class="popup-handle-bar"></div>
+            </div>
+            <div class="popup-header">
+                <h3>📅 Selecione a Data</h3>
+                <button type="button" class="close-popup" onclick="fecharPopup('popupData')">✕</button>
+            </div>
+            <div class="popup-body">
+                <div class="calendario-header">
+                    <h4 id="mesAno"></h4>
+                    <div class="calendario-nav">
+                        <button type="button" onclick="mesAnterior()">‹</button>
+                        <button type="button" onclick="proximoMes()">›</button>
+                    </div>
+                </div>
+                <div class="calendario-dias-semana">
+                    <div class="dia-semana">Dom</div>
+                    <div class="dia-semana">Seg</div>
+                    <div class="dia-semana">Ter</div>
+                    <div class="dia-semana">Qua</div>
+                    <div class="dia-semana">Qui</div>
+                    <div class="dia-semana">Sex</div>
+                    <div class="dia-semana">Sáb</div>
+                </div>
+                <div class="calendario-dias" id="calendarioDias"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup: Horário -->
+    <div class="popup-overlay" id="popupHorario">
+        <div class="popup-content">
+            <div class="popup-handle" onclick="fecharPopup('popupHorario')">
+                <div class="popup-handle-bar"></div>
+            </div>
+            <div class="popup-header">
+                <h3>🕐 Escolha o Horário</h3>
+                <button type="button" class="close-popup" onclick="fecharPopup('popupHorario')">✕</button>
+            </div>
+            <div class="popup-body">
+                <div class="loading-horarios" id="loadingHorarios" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Verificando horários disponíveis...</p>
+                </div>
+                
+                <div class="horarios-grid" id="horariosGrid">
+                    <div class="horario-item" onclick="selecionarHorario('08:00', this)">08:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('09:00', this)">09:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('10:00', this)">10:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('11:00', this)">11:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('13:00', this)">13:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('14:00', this)">14:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('15:00', this)">15:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('16:00', this)">16:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('17:00', this)">17:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('18:00', this)">18:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('19:00', this)">19:00</div>
+                    <div class="horario-item" onclick="selecionarHorario('20:00', this)">20:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal-overlay" id="modalSucesso" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-icon">✅</div>
+            <h2>Agendamento Confirmado!</h2>
+            <p id="mensagemSucesso"></p>
+            <button onclick="irParaAtendimentos()" class="btn-modal">Ver Meus Agendamentos</button>
+            <button onclick="fecharModal()" class="btn-modal-secondary">Fazer Novo Agendamento</button>
+        </div>
+    </div>
+    </main>
+
+    <!-- Barra de Navegação Inferior -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9.02 2.84016L3.63 7.04016C2.73 7.74016 2 9.23016 2 10.3602V17.7702C2 20.0902 3.89 21.9902 6.21 21.9902H17.79C20.11 21.9902 22 20.0902 22 17.7802V10.5002C22 9.29016 21.19 7.74016 20.2 7.05016L14.02 2.72016C12.62 1.74016 10.37 1.79016 9.02 2.84016Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Início</span>
+        </a>
+        <a href="agendamento.html" class="nav-item active">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Agendar</span>
+        </a>
+        <a href="atendimentos.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Atendimentos</span>
+        </a>
+        <a href="perfil.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <script src="js/agendamento.js"></script>
+</body>
+</html>

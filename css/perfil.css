@@ -1,0 +1,822 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("../img/Back (1).png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: black;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 14, 39, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(20, 99, 139, 0.3);
+    border-top: 4px solid #14638b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: white;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.loading-overlay.hidden {
+    display: none !important;
+}
+
+.btn-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(20, 99, 139, 0.5);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.btn-voltar:hover {
+    border-color: #14638b;
+    background: rgba(20, 99, 139, 0.3);
+    transform: translateY(-2px);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, rgba(20, 99, 139, 0.95) 0%, rgba(17, 80, 111, 0.9) 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-nav .logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header-nav h1 {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 700;
+}
+
+.perfil-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.perfil-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+}
+
+.perfil-header {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(20, 99, 139, 0.4);
+}
+
+.avatar svg {
+    stroke: white;
+}
+
+.perfil-header h2 {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.membro-desde {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.badge-plano {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: white;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+}
+
+.perfil-info {
+    padding: 2rem 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item svg {
+    flex-shrink: 0;
+    stroke: #14638b;
+}
+
+.info-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-item .label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.info-item .valor {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.btn-editar {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 12px rgba(20, 99, 139, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-editar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(20, 99, 139, 0.4);
+    background: linear-gradient(135deg, #1483bb 0%, #14638b 100%);
+}
+
+.btn-editar svg {
+    stroke: currentColor;
+}
+
+.btn-sair {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.btn-sair:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+}
+
+.btn-sair svg {
+    stroke: currentColor;
+}
+
+.estatisticas,
+.acoes-rapidas {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+}
+
+.estatisticas h3,
+.acoes-rapidas h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid rgba(20, 99, 139, 0.1);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon svg {
+    stroke: white;
+}
+
+.stat-info {
+    text-align: center;
+}
+
+.stat-numero {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #14638b;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.acoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.acao-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid rgba(20, 99, 139, 0.2);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.acao-btn:hover {
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(20, 99, 139, 0.3);
+}
+
+.acao-btn:hover svg {
+    stroke: white;
+}
+
+.acao-btn svg {
+    stroke: #14638b;
+    transition: stroke 0.3s ease;
+}
+
+/* Barra de Navegação Inferior */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(20, 99, 139, 0.95) 0%, rgba(17, 80, 111, 0.98) 100%);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0.25rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    min-width: 60px;
+    max-width: 80px;
+    position: relative;
+}
+
+.bottom-nav .nav-item svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+}
+
+.bottom-nav .nav-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bottom-nav .nav-item.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.bottom-nav .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    border-radius: 0 0 3px 3px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 600px) {
+    /* Garantir que o background fique fixo no mobile */
+    body {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        overflow-x: hidden;
+        overflow-y: auto;
+        /* Para iOS Safari */
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+    
+    /* Alternativa para iOS que não suporta background-attachment: fixed */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("./img/Back\ \(1\).png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -999;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .bottom-nav {
+        padding: 0.75rem 1rem;
+    }
+    
+    .bottom-nav .nav-item {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+        min-width: 70px;
+        max-width: 100px;
+        gap: 0.25rem;
+    }
+    
+    .bottom-nav .nav-item svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .bottom-nav {
+        padding: 1rem 2rem;
+    }
+    
+    .bottom-nav .nav-item {
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        min-width: 90px;
+        max-width: 120px;
+    }
+    
+    .bottom-nav .nav-item svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Agendamentos Recorrentes */
+.agendamentos-recorrentes {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+}
+
+.agendamentos-recorrentes h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.descricao-agendamentos {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.lista-agendamentos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.agendamento-card-recorrente {
+    background: linear-gradient(135deg, rgba(20, 99, 139, 0.05) 0%, rgba(20, 99, 139, 0.1) 100%);
+    border: 2px solid rgba(20, 99, 139, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.agendamento-card-recorrente:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 99, 139, 0.2);
+    border-color: rgba(20, 99, 139, 0.4);
+}
+
+.agendamento-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.data-info {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.data-info svg {
+    stroke: #14638b;
+    flex-shrink: 0;
+}
+
+.data-texto {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    text-transform: capitalize;
+}
+
+.hora-texto {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pendente {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: white;
+}
+
+.status-confirmado {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.status-concluido {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    color: white;
+}
+
+.status-cancelado {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+}
+
+.agendamento-acoes {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-reagendar,
+.btn-cancelar-agendamento {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-reagendar {
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    color: white;
+}
+
+.btn-reagendar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 99, 139, 0.4);
+}
+
+.btn-cancelar-agendamento {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+.btn-cancelar-agendamento:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 1.5rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.btn-fechar-modal {
+    background: rgba(220, 53, 69, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #dc3545;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-fechar-modal:hover {
+    background: #dc3545;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 2rem 1.5rem;
+}
+
+.aviso-reagendamento {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    color: #856404;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #14638b;
+    box-shadow: 0 0 0 3px rgba(20, 99, 139, 0.1);
+}
+
+.mensagem-erro {
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 2px solid #e0e0e0;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+    flex: 1;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-cancelar {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+    border: 2px solid #6c757d;
+}
+
+.btn-cancelar:hover {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-confirmar {
+    background: linear-gradient(135deg, #14638b 0%, #11506f 100%);
+    color: white;
+}
+
+.btn-confirmar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 99, 139, 0.4);
+}

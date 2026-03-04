@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Damasceno's Hair</title>
+    <link rel="stylesheet" href="css/loja.css">
+    <link rel="icon" type="image/png" href="img/Logo (2).png">
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="index.html" class="btn-voltar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Voltar
+            </a>
+            <div class="header-center">
+                <img src="img/Logo (2).png" alt="Logo" class="logo">
+                <h1>Nossa Loja</h1>
+            </div>
+            <button class="btn-carrinho" onclick="abrirCarrinho()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="carrinho-count" id="carrinhoCount">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="loja-section">
+            <div class="titulo-section">
+                <h1>Produtos Premium</h1>
+                <p>Os melhores produtos para cuidar do seu visual</p>
+            </div>
+
+            <!-- Grid de Produtos -->
+            <div class="produtos-grid">
+                <!-- Produto 1 -->
+                <div class="produto-card">
+                    <div class="produto-badge">Mais Vendido</div>
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Pomada Modeladora</h3>
+                    <p class="produto-descricao">Fixação forte e acabamento natural. Ideal para todos os tipos de cabelo.</p>
+                    <p class="produto-preco">R$ 45,00</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Pomada Modeladora', 45)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto-card">
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Óleo para Barba</h3>
+                    <p class="produto-descricao">Hidratação profunda e brilho natural. Aroma amadeirado.</p>
+                    <p class="produto-preco">R$ 39,90</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Óleo para Barba', 39.90)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="produto-card">
+                    <div class="produto-badge destaque">Novo</div>
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Shampoo Premium</h3>
+                    <p class="produto-descricao">Limpeza profunda sem ressecar. Fórmula com extratos naturais.</p>
+                    <p class="produto-preco">R$ 32,00</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Shampoo Premium', 32)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="produto-card">
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Cera Modeladora</h3>
+                    <p class="produto-descricao">Fixação média com brilho intenso. Fácil de aplicar e remover.</p>
+                    <p class="produto-preco">R$ 42,00</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Cera Modeladora', 42)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Produto 5 -->
+                <div class="produto-card">
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Balm para Barba</h3>
+                    <p class="produto-descricao">Hidrata e modela sua barba. Fragrância suave e duradoura.</p>
+                    <p class="produto-preco">R$ 38,00</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Balm para Barba', 38)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Produto 6 -->
+                <div class="produto-card">
+                    <div class="produto-imagem">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Gel Fixador</h3>
+                    <p class="produto-descricao">Fixação extrema por até 24h. Não deixa resíduos brancos.</p>
+                    <p class="produto-preco">R$ 28,50</p>
+                    <button class="btn-adicionar" onclick="adicionarCarrinho('Gel Fixador', 28.50)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Informação -->
+            <div class="info-loja">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>Site de demonstração - Compras simuladas</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/loja.js"></script>
+</body>
+</html>
