@@ -37,14 +37,14 @@ function fecharPopup(popupId) {
 }
 
 // ===== SELEÇÃO DE BARBEIRO =====
-function selecionarBarbeiro(nome) {
+function selecionarBarbeiro(nome, cardElement) {
     // Remove seleção anterior
     document.querySelectorAll('.barbeiro-card').forEach(card => {
         card.classList.remove('selected');
     });
     
     // Marca como selecionado
-    event.currentTarget.classList.add('selected');
+    (cardElement || window.event?.currentTarget)?.classList.add('selected');
     
     // Atualiza input hidden
     document.getElementById('profissional-hidden').value = nome;
@@ -66,14 +66,14 @@ function selecionarBarbeiro(nome) {
 }
 
 // ===== SELEÇÃO DE SERVIÇO =====
-function selecionarServico(nome, preco) {
+function selecionarServico(nome, preco, itemElement) {
     // Remove seleção anterior
     document.querySelectorAll('.servico-item').forEach(item => {
         item.classList.remove('selected');
     });
     
     // Marca como selecionado
-    event.currentTarget.classList.add('selected');
+    (itemElement || window.event?.currentTarget)?.classList.add('selected');
     
     // Atualiza inputs hidden
     document.getElementById('servico-hidden').value = nome;
@@ -205,7 +205,7 @@ function selecionarHorario(hora, element) {
             element.style.animation = '';
         }, 300);
         
-        mostrarErro('⚠️ Este horário já está ocupado. Por favor, escolha outro.');
+        mostrarErro('Este horário já está ocupado. Por favor, escolha outro.');
         return;
     }
     
@@ -344,7 +344,7 @@ document.getElementById('agendamentoForm').addEventListener('submit', function(e
         return false;
     }
 
-    // Todos os campos estão preenchidos, mostrar loading
+    // Todos os campos estáo preenchidos, mostrar loading
     errorDiv.classList.remove('show');
     
     const btnText = submitBtn.querySelector('.btn-text');
@@ -436,4 +436,72 @@ function fecharModal() {
 
 function irParaAtendimentos() {
     window.location.href = 'atendimentos.html';
+}
+
+
+// ===== INTEGRAÇÃO COM PAINEL ADMIN =====
+function getHorariosBloqueadosAdmin(data, profissional) {
+    const bloqueios = JSON.parse(localStorage.getItem('horariosBloqueados') || '[]');
+    return bloqueios
+        .filter(item => item.data === data && item.profissional === profissional)
+        .map(item => item.horario);
+}
+
+function carregarHorariosDisponiveis(data, profissional) {
+    const loadingElement = document.getElementById('loadingHorarios');
+    const horariosGrid = document.getElementById('horariosGrid');
+    if (loadingElement && horariosGrid) {
+        loadingElement.style.display = 'flex';
+        horariosGrid.style.opacity = '0.3';
+        horariosGrid.style.pointerEvents = 'none';
+    }
+
+    setTimeout(() => {
+        const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+        const horariosOcupados = agendamentos
+            .filter(ag => ag.data === data && ag.profissional === profissional && ag.status !== 'Cancelado')
+            .map(ag => ag.horario);
+        const horariosBloqueados = getHorariosBloqueadosAdmin(data, profissional);
+
+        aplicarHorariosOcupados(horariosOcupados, horariosBloqueados);
+
+        if (loadingElement && horariosGrid) {
+            loadingElement.style.display = 'none';
+            horariosGrid.style.opacity = '1';
+            horariosGrid.style.pointerEvents = 'auto';
+        }
+    }, 300);
+}
+
+function aplicarHorariosOcupados(horariosOcupados, horariosBloqueados = []) {
+    const todosHorarios = document.querySelectorAll('.horario-item');
+
+    todosHorarios.forEach(item => {
+        const horario = item.textContent.trim().slice(0, 5);
+        item.classList.remove('ocupado', 'selected', 'bloqueado');
+        item.style.pointerEvents = 'auto';
+        item.style.cursor = 'pointer';
+        item.title = '';
+        item.textContent = horario;
+
+        if (horariosOcupados.includes(horario)) {
+            item.classList.add('ocupado');
+            item.style.pointerEvents = 'none';
+            item.style.cursor = 'not-allowed';
+            item.title = 'Horário já ocupado';
+            item.textContent = horario + ' ocupado';
+            return;
+        }
+
+        if (horariosBloqueados.includes(horario)) {
+            item.classList.add('ocupado', 'bloqueado');
+            item.style.pointerEvents = 'none';
+            item.style.cursor = 'not-allowed';
+            item.title = 'Bloqueado pelo barbeiro';
+            item.textContent = horario + ' bloqueado';
+            return;
+        }
+
+        item.setAttribute('onclick', "selecionarHorario('" + horario + "', this)");
+    });
 }

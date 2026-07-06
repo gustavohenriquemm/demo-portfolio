@@ -8,14 +8,18 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url("../img/Back (1).png");
+    background-image: url("../img/Fundopc.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
     background-color: black;
     min-height: 100vh;
+    max-height: 100vh;
     padding-bottom: 80px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .header-nav {
@@ -335,6 +339,11 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        background-image: url("../img/Fundomobile.png");
+        background-size: 100% 100%;
+    }
+
     .titulo-section h1 {
         font-size: 2rem;
     }

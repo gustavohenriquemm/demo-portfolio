@@ -8,14 +8,18 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url("../img/Back (1).png");
+    background-image: url("../img/Fundopc.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
     background-color: #0a0e27;
     min-height: 100vh;
+    max-height: 100vh;
     padding-bottom: 80px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .header-nav {
@@ -763,27 +767,8 @@ body {
 
 @media (max-width: 768px) {
     body {
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        overflow-x: hidden;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        position: relative;
-    }
-    
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("../img/Back (1).png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: -999;
+        background-image: url("../img/Fundomobile.png");
+        background-size: 100% 100%;
     }
     
     .btn-voltar {

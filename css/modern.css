@@ -1,0 +1,204 @@
+:root {
+    --ui-bg: #061016;
+    --ui-panel: rgba(8, 18, 25, 0.78);
+    --ui-panel-strong: rgba(9, 24, 34, 0.92);
+    --ui-line: rgba(255, 255, 255, 0.14);
+    --ui-text: #f8fafc;
+    --ui-muted: rgba(248, 250, 252, 0.72);
+    --ui-brand: #0f7ca7;
+    --ui-brand-dark: #09506f;
+    --ui-gold: #c8a15b;
+    --ui-danger: #ef4444;
+    --ui-success: #22c55e;
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--ui-text); background-color: var(--ui-bg); }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 78% 10%, rgba(200, 161, 91, 0.16), transparent 28%), linear-gradient(180deg, rgba(2, 7, 10, 0.04), rgba(2, 7, 10, 0.5));
+    z-index: 0;
+}
+body > header, body > main, body > nav, body > .modal-overlay, body > .popup-overlay { position: relative; z-index: 1; }
+.header-nav {
+    border-bottom: 1px solid var(--ui-line) !important;
+    background: rgba(5, 12, 18, 0.9) !important;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28) !important;
+}
+.header-nav .logo { object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.32)); }
+.header-nav h1, .titulo-section h1, .perfil-section h3, .popup-header h3, .modal-content h2 { letter-spacing: 0; }
+main { padding-bottom: 112px; }
+.container, .loja-section, .perfil-section, .atendimentos-section { width: min(1120px, calc(100% - 32px)); margin-left: auto !important; margin-right: auto !important; }
+.titulo-section {
+    margin: 28px auto 24px !important;
+    padding: 22px 0 6px !important;
+    text-align: left !important;
+}
+.titulo-section h1 { font-size: clamp(2rem, 5vw, 3.3rem) !important; line-height: 1.02; color: var(--ui-text) !important; }
+.titulo-section p { color: var(--ui-muted) !important; font-size: 1rem !important; max-width: 640px; }
+.card-wrapper, .perfil-card, .estatisticas, .acoes-rapidas, .produto-card, .atendimento-card, .login-card, .info-loja, .info-demo, .sem-atendimentos, .modal-content, .popup-content {
+    border-radius: 8px !important;
+    border: 1px solid var(--ui-line) !important;
+    background: var(--ui-panel) !important;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 44px rgba(0,0,0,.28) !important;
+}
+.campo-btn, .servico-item, .barbeiro-card, .stat-card, .acao-btn, .btn-filtro, .btn-novo, .btn-adicionar, .btn-submit, .submit-btn, .btn-modal, .btn-modal-secondary, .btn-editar, .btn-sair, .tab, input, .btn-voltar, .btn-carrinho, .produto-imagem, .horario-item, .dia { border-radius: 8px !important; }
+.submit-btn, .btn-submit, .btn-novo, .btn-adicionar, .btn-modal, .btn-editar, .tab.active {
+    background: linear-gradient(135deg, var(--ui-brand), var(--ui-brand-dark)) !important;
+    box-shadow: 0 12px 28px rgba(15,124,167,.28) !important;
+}
+.submit-btn:hover, .btn-submit:hover, .btn-novo:hover, .btn-adicionar:hover, .btn-modal:hover, .btn-editar:hover, .acao-btn:hover, .produto-card:hover, .atendimento-card:hover { transform: translateY(-3px); }
+.produto-preco, .servico-preco, .badge-plano, .stat-numero, .produto-badge { color: var(--ui-gold) !important; }
+.produto-imagem, .stat-icon, .avatar {
+    color: var(--ui-gold) !important;
+    background: linear-gradient(135deg, rgba(200,161,91,.16), rgba(15,124,167,.14)) !important;
+    border: 1px solid var(--ui-line);
+}
+.produtos-grid, .stats-grid, .acoes-grid { gap: 18px !important; }
+.produto-card, .atendimento-card { transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.produto-card:hover, .atendimento-card:hover { border-color: rgba(200,161,91,.45) !important; }
+.login-card { max-width: 480px !important; }
+.form-group input { background: rgba(255,255,255,.08) !important; border: 1px solid var(--ui-line) !important; color: #fff !important; }
+.form-group input::placeholder { color: rgba(255,255,255,.48) !important; }
+.bottom-nav {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    padding: 8px !important;
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 8px !important;
+    background: rgba(5,12,18,.9) !important;
+    backdrop-filter: blur(18px);
+}
+.bottom-nav .nav-item, .nav-item {
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 58px;
+    border-radius: 7px !important;
+    color: rgba(255,255,255,.66) !important;
+}
+.bottom-nav .nav-item.active, .bottom-nav .nav-item:hover, .nav-item.active, .nav-item:hover { color: #fff !important; background: rgba(255,255,255,.12) !important; }
+.bottom-nav .nav-item.active::before { display: none; }
+.popup-overlay, .modal-overlay { z-index: 2000 !important; }
+.popup-content { background: linear-gradient(135deg, rgba(9,18,27,.98), rgba(8,48,65,.98)) !important; }
+.close-popup { border-radius: 50% !important; }
+.error-message { background: rgba(239,68,68,.14) !important; border-color: rgba(239,68,68,.55) !important; }
+.success-message { background: rgba(34,197,94,.14) !important; border-color: rgba(34,197,94,.55) !important; }
+@media (max-width: 700px) {
+    main { padding-bottom: 98px; }
+    .container, .loja-section, .perfil-section, .atendimentos-section { width: min(100% - 20px, 1120px); }
+    .titulo-section { text-align: center !important; }
+    .bottom-nav { left: 8px !important; right: 8px !important; bottom: 8px !important; }
+    .bottom-nav .nav-item, .nav-item { min-height: 54px; font-size: .64rem !important; padding: 6px 2px !important; }
+}
+
+
+/* Refinos finais das páginas internas */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgba(2, 7, 10, 0.76), rgba(5, 17, 24, 0.42)), url('../img/Fundopc.png') center / cover fixed no-repeat;
+}
+.login-page .container {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+}
+.login-page .login-card {
+    width: min(480px, 100%);
+}
+.login-page .logo-container img {
+    width: 116px !important;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42));
+}
+.login-page .subtitle,
+.login-page .info-demo p,
+.perfil-page .membro-desde,
+.produto-descricao,
+.sem-atendimentos .subtexto {
+    color: var(--ui-muted) !important;
+}
+.loja-page main { padding-bottom: 122px; }
+.loja-page .produtos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) !important;
+}
+.loja-page .produto-card {
+    display: grid;
+    grid-template-rows: auto 112px auto auto auto;
+    min-height: 390px;
+}
+.product-visual {
+    width: 100% !important;
+    min-height: 112px;
+    display: grid !important;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.product-visual::after {
+    content: "";
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.18), transparent 65%);
+}
+.product-visual svg {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 12px 18px rgba(0,0,0,.32));
+}
+.btn-carrinho, .btn-voltar {
+    border: 1px solid var(--ui-line) !important;
+    background: rgba(255,255,255,.08) !important;
+    color: var(--ui-text) !important;
+}
+.perfil-page .perfil-section {
+    display: grid;
+    grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    padding-top: 28px;
+}
+.perfil-page .perfil-card { grid-row: span 2; }
+.perfil-page .estatisticas,
+.perfil-page .acoes-rapidas { margin-top: 0 !important; }
+.agendamento-page .container { padding-top: 28px; }
+.agendamento-page .card-wrapper { max-width: 640px; margin: 0 auto; }
+.agendamento-page .logo-container img { max-width: 150px !important; }
+.atendimentos-page .filtros {
+    border: 1px solid var(--ui-line);
+    border-radius: 8px;
+    padding: 8px;
+    background: rgba(255,255,255,.06);
+}
+.atendimentos-page .btn-filtro.active {
+    background: linear-gradient(135deg, var(--ui-brand), var(--ui-brand-dark)) !important;
+    color: #fff !important;
+}
+@media (max-width: 860px) {
+    .perfil-page .perfil-section { grid-template-columns: 1fr; }
+    .perfil-page .perfil-card { grid-row: auto; }
+    .login-page { background-image: linear-gradient(180deg, rgba(2,7,10,.62), rgba(2,7,10,.9)), url('../img/Fundomobile.png'); background-attachment: scroll; }
+}
+
+
+.horario-item.bloqueado {
+    background: rgba(200, 161, 91, 0.18) !important;
+    border-color: rgba(200, 161, 91, 0.42) !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+}
+.home-admin-link {
+    background: rgba(200, 161, 91, 0.16) !important;
+    border-color: rgba(200, 161, 91, 0.42) !important;
+}

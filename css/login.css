@@ -8,17 +8,21 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url("../img/Back (1).png");
+    background-image: url("../img/Fundopc.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
     background-color: #1a1a1a;
     min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .container {
@@ -79,7 +83,7 @@ body {
 }
 
 .tab.active {
-    color: #14638b;
+    color: #ffffff;
     border-bottom-color: #14638b;
 }
 
@@ -215,6 +219,11 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        background-image: url("../img/Fundomobile.png");
+        background-size: 100% 100%;
+    }
+
     .login-card {
         padding: 30px 20px;
     }

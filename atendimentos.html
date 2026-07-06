@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Atendimentos - Damasceno's Hair</title>
     <link rel="stylesheet" href="css/atendimentos.css">
+    <link rel="stylesheet" href="css/modern.css">
     <link rel="icon" type="image/png" href="img/Logo (2).png">
 </head>
-<body>
+<body class="atendimentos-page">
     <script>
         // Verificar login ao carregar a página
         window.addEventListener('DOMContentLoaded', function() {
@@ -35,10 +36,10 @@
 
             <!-- Filtros -->
             <div class="filtros">
-                <button class="btn-filtro active" onclick="filtrarAtendimentos('todos')">Todos</button>
-                <button class="btn-filtro" onclick="filtrarAtendimentos('proximos')">Próximos</button>
-                <button class="btn-filtro" onclick="filtrarAtendimentos('concluidos')">Concluídos</button>
-                <button class="btn-filtro" onclick="filtrarAtendimentos('cancelados')">Cancelados</button>
+                <button class="btn-filtro active" onclick="filtrarAtendimentos('todos', this)">Todos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('proximos', this)">Próximos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('concluidos', this)">Concluídos</button>
+                <button class="btn-filtro" onclick="filtrarAtendimentos('cancelados', this)">Cancelados</button>
             </div>
 
             <!-- Loading -->

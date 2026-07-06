@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento - Damasceno's Hair</title>
     <link rel="stylesheet" href="css/agendamento.css">
+    <link rel="stylesheet" href="css/modern.css">
     <link rel="icon" type="image/png" href="img/Logo (2).png">
 </head>
-<body>
+<body class="agendamento-page">
     <script>
         // Verificar login ao carregar a página
         window.addEventListener('DOMContentLoaded', function() {
@@ -127,14 +128,14 @@
             </div>
             <div class="popup-body">
                 <div class="barbeiros-grid">
-                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Sandrão')">
+                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Sandrão', this)">
                         <div class="barbeiro-photo">
-                            <img src="img/Foto pg 1 sandrão.png" alt="Sandrão">
+                            <img src="img/Damacenahair.png" alt="Sandrão">
                         </div>
                         <div class="barbeiro-name">Sandrão</div>
                         <div class="barbeiro-desc">Especialista em cortes clássicos e modernos</div>
                     </div>
-                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Tito')">
+                    <div class="barbeiro-card" onclick="selecionarBarbeiro('Tito', this)">
                         <div class="barbeiro-photo">
                             <img src="img/2 tito.png" alt="Tito">
                         </div>
@@ -158,7 +159,7 @@
             </div>
             <div class="popup-body">
                 <div class="servicos-list">
-                    <div class="servico-item" onclick="selecionarServico('Corte de Cabelo', 'R$ 40')">
+                    <div class="servico-item" onclick="selecionarServico('Corte de Cabelo', 'R$ 40', this)">
                         <div class="servico-info">
                             <span class="servico-icone">✂️</span>
                             <div class="servico-detalhes">
@@ -167,7 +168,7 @@
                         </div>
                         <span class="servico-preco">R$ 40</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Barba', 'R$ 30')">
+                    <div class="servico-item" onclick="selecionarServico('Barba', 'R$ 30', this)">
                         <div class="servico-info">
                             <span class="servico-icone">🪒</span>
                             <div class="servico-detalhes">
@@ -176,7 +177,7 @@
                         </div>
                         <span class="servico-preco">R$ 30</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Corte + Barba', 'R$ 60')">
+                    <div class="servico-item" onclick="selecionarServico('Corte + Barba', 'R$ 60', this)">
                         <div class="servico-info">
                             <span class="servico-icone">💈</span>
                             <div class="servico-detalhes">
@@ -185,7 +186,7 @@
                         </div>
                         <span class="servico-preco">R$ 60</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Hidratação', 'R$ 50')">
+                    <div class="servico-item" onclick="selecionarServico('Hidratação', 'R$ 50', this)">
                         <div class="servico-info">
                             <span class="servico-icone">💧</span>
                             <div class="servico-detalhes">
@@ -194,7 +195,7 @@
                         </div>
                         <span class="servico-preco">R$ 50</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Pigmentação', 'R$ 80')">
+                    <div class="servico-item" onclick="selecionarServico('Pigmentação', 'R$ 80', this)">
                         <div class="servico-info">
                             <span class="servico-icone">🎨</span>
                             <div class="servico-detalhes">
@@ -203,7 +204,7 @@
                         </div>
                         <span class="servico-preco">R$ 80</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Sobrancelha', 'R$ 25')">
+                    <div class="servico-item" onclick="selecionarServico('Sobrancelha', 'R$ 25', this)">
                         <div class="servico-info">
                             <span class="servico-icone">👁️</span>
                             <div class="servico-detalhes">
@@ -212,7 +213,7 @@
                         </div>
                         <span class="servico-preco">R$ 25</span>
                     </div>
-                    <div class="servico-item" onclick="selecionarServico('Corte + Barba + Sobrancelha', 'R$ 80')">
+                    <div class="servico-item" onclick="selecionarServico('Corte + Barba + Sobrancelha', 'R$ 80', this)">
                         <div class="servico-info">
                             <span class="servico-icone">💈</span>
                             <div class="servico-detalhes">

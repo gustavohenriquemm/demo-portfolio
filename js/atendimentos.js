@@ -18,8 +18,8 @@ function carregarAtendimentos() {
         
         // Ordenar por data (mais recentes primeiro)
         agendamentos.sort((a, b) => {
-            const dataA = new Date(a.data + ' ' + a.horario);
-            const dataB = new Date(b.data + ' ' + b.horario);
+            const dataA = new Date(`${a.data}T${a.horario}:00`);
+            const dataB = new Date(`${b.data}T${b.horario}:00`);
             return dataB - dataA;
         });
         
@@ -171,19 +171,19 @@ function criarCardAtendimento(agendamento) {
 // ===== VERIFICAR SE A DATA É FUTURA =====
 function isDataFutura(data, horario) {
     const agora = new Date();
-    const dataAgendamento = new Date(data + ' ' + horario);
+    const dataAgendamento = new Date(`${data}T${horario}:00`);
     return dataAgendamento > agora;
 }
 
 // ===== FILTRAR ATENDIMENTOS =====
-function filtrarAtendimentos(filtro) {
+function filtrarAtendimentos(filtro, buttonElement) {
     filtroAtual = filtro;
     
     // Atualizar botões de filtro
     document.querySelectorAll('.btn-filtro').forEach(btn => {
         btn.classList.remove('active');
     });
-    event.target.classList.add('active');
+    (buttonElement || window.event?.target)?.classList.add('active');
     
     // Recarregar atendimentos com o filtro
     carregarAtendimentos();

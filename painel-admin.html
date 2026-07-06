@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Damasceno's Hair</title>
+    <link rel="stylesheet" href="css/modern.css">
+    <link rel="stylesheet" href="admin/admin.css">
+    <link rel="icon" type="image/png" href="img/Logo (2).png">
+</head>
+<body class="admin-page">
+    <header class="admin-topbar">
+        <a class="brand" href="index.html" aria-label="Voltar ao site">
+            <img src="img/Logo (2).png" alt="Damasceno's Hair">
+            <span>Admin</span>
+        </a>
+        <div class="topbar-actions">
+            <a href="agendamento.html" class="ghost-link">Agendamento</a>
+            <a href="index.html" class="ghost-link">Site</a>
+        </div>
+    </header>
+
+    <main class="admin-shell">
+        <section class="admin-hero">
+            <div>
+                <p class="eyebrow">Controle da barbearia</p>
+                <h1>Painel dos barbeiros</h1>
+                <p>Veja os cortes do dia, acompanhe receita e bloqueie horários para controlar a agenda de Sandrão e Tito.</p>
+            </div>
+            <div class="hero-card">
+                <span>Agenda selecionada</span>
+                <strong id="heroDateLabel">Hoje</strong>
+            </div>
+        </section>
+
+        <section class="toolbar-panel" aria-label="Filtros da agenda">
+            <label>Barbeiro<select id="barbeiroFiltro"><option value="todos">Todos</option><option value="Sandrão">Sandrão</option><option value="Tito">Tito</option></select></label>
+            <label>Data<input type="date" id="dataFiltro"></label>
+            <label>Status<select id="statusFiltro"><option value="todos">Todos</option><option value="Confirmado">Confirmados</option><option value="Concluído">Concluídos</option><option value="Cancelado">Cancelados</option></select></label>
+            <button class="primary-action" id="btnHoje" type="button">Hoje</button>
+        </section>
+
+        <section class="metrics-grid" aria-label="Resumo do dia">
+            <article class="metric-card"><span>Cortes do dia</span><strong id="metricCortes">0</strong></article>
+            <article class="metric-card"><span>Receita prevista</span><strong id="metricReceita">R$ 0,00</strong></article>
+            <article class="metric-card"><span>Horários vagos</span><strong id="metricVagos">0</strong></article>
+            <article class="metric-card"><span>Bloqueados</span><strong id="metricBloqueados">0</strong></article>
+        </section>
+
+        <section class="admin-grid">
+            <article class="panel agenda-panel">
+                <div class="panel-header">
+                    <div><span class="panel-kicker">Atendimentos</span><h2>Cortes recebidos</h2></div>
+                    <button class="ghost-button" id="btnSeed" type="button">Criar exemplo</button>
+                </div>
+                <div class="appointments-list" id="appointmentsList"></div>
+            </article>
+
+            <article class="panel schedule-panel">
+                <div class="panel-header"><div><span class="panel-kicker">Controle de vagas</span><h2>Horários do dia</h2></div></div>
+                <div class="legend-row"><span><i class="dot free"></i> Vago</span><span><i class="dot busy"></i> Ocupado</span><span><i class="dot blocked"></i> Bloqueado</span></div>
+                <div class="schedule-board" id="scheduleBoard"></div>
+                <p class="hint">Clique em um horário vago para bloquear. Clique em um bloqueado para liberar.</p>
+            </article>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="admin/admin.js"></script>
+</body>
+</html>
